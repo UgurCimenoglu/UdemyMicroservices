@@ -1,6 +1,8 @@
 using FreeCourse.Services.Catalog.Services.CategoryServices;
 using FreeCourse.Services.Catalog.Services.CourseServices;
 using FreeCourse.Services.Catalog.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
 
 namespace FreeCourse.Services.Catalog
@@ -20,11 +22,21 @@ namespace FreeCourse.Services.Catalog
             //AutoMapper added.
             builder.Services.AddAutoMapper(typeof(Program));
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(opt =>
+            {
+                opt.Filters.Add(new AuthorizeFilter()); // Bütün controllerlara teker teker Authorize attribute eklemek yerine tüm controllerlar için bu görevi yapan bir filter ekledik.
+            });
 
             builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
             builder.Services.AddSingleton<IDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.Authority = builder.Configuration["IdentityServerUrl"];
+                options.Audience = builder.Configuration["Audience"];
+                options.RequireHttpsMetadata = false;
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -39,6 +51,7 @@ namespace FreeCourse.Services.Catalog
                 app.UseSwaggerUI();
             }
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
