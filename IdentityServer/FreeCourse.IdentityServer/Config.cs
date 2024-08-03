@@ -61,6 +61,7 @@ namespace FreeCourse.IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.OfflineAccess,
+                        IdentityServerConstants.LocalApi.ScopeName,
                         "roles"
                     },
                     AccessTokenLifetime = 1*60*60,
