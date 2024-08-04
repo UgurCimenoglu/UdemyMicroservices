@@ -14,7 +14,7 @@ namespace FreeCourse.Services.PhotoStock
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.Authority = builder.Configuration["IdentityServerUrl"];
-                options.Audience = "resource_catalog";
+                options.Audience = builder.Configuration["Audience"];
                 options.RequireHttpsMetadata = false;
             });
 

@@ -22,11 +22,6 @@ namespace FreeCourse.Services.Catalog
             //AutoMapper added.
             builder.Services.AddAutoMapper(typeof(Program));
 
-            builder.Services.AddControllers(opt =>
-            {
-                opt.Filters.Add(new AuthorizeFilter()); // Bütün controllerlara teker teker Authorize attribute eklemek yerine tüm controllerlar için bu görevi yapan bir filter ekledik.
-            });
-
             builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
             builder.Services.AddSingleton<IDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
@@ -36,6 +31,11 @@ namespace FreeCourse.Services.Catalog
                 options.Authority = builder.Configuration["IdentityServerUrl"];
                 options.Audience = builder.Configuration["Audience"];
                 options.RequireHttpsMetadata = false;
+            });
+
+            builder.Services.AddControllers(opt =>
+            {
+                opt.Filters.Add(new AuthorizeFilter()); // Bütün controllerlara teker teker Authorize attribute eklemek yerine tüm controllerlar için bu görevi yapan bir filter ekledik.
             });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
