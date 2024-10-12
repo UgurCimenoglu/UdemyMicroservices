@@ -23,7 +23,6 @@ namespace FreeCourse.Services.Basket.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBasket()
         {
-            var a = User.Claims;
             return CreateActionResultInstance(await _basketService.Get(_sharedIdentityService.GetUserId));
         }
 
