@@ -30,6 +30,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Services.Basket"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeCourse.Services.PhotoStock", "Services\PhotoStock\FreeCourse.Services.PhotoStock\FreeCourse.Services.PhotoStock.csproj", "{6D17DDD1-4A2E-433A-9ADA-9CB6BA5881AA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discount", "Discount", "{C60268FC-F2E5-4777-871B-B58C481C2F24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Services.Discount", "Services\Discount\FreeCourse.Services.Discount\FreeCourse.Services.Discount.csproj", "{C9814374-1B7F-4459-AFD1-4E8A9A5FC3CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,10 @@ Global
 		{6D17DDD1-4A2E-433A-9ADA-9CB6BA5881AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D17DDD1-4A2E-433A-9ADA-9CB6BA5881AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D17DDD1-4A2E-433A-9ADA-9CB6BA5881AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9814374-1B7F-4459-AFD1-4E8A9A5FC3CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9814374-1B7F-4459-AFD1-4E8A9A5FC3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9814374-1B7F-4459-AFD1-4E8A9A5FC3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9814374-1B7F-4459-AFD1-4E8A9A5FC3CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +77,8 @@ Global
 		{6785E9AE-A942-4539-967E-A9424B1EB133} = {11D07F13-BEF3-47F7-890B-F5A0AFB2CBA6}
 		{0B0D6122-A194-499D-8A7D-8CFA003818D8} = {6785E9AE-A942-4539-967E-A9424B1EB133}
 		{6D17DDD1-4A2E-433A-9ADA-9CB6BA5881AA} = {CE575804-BC88-4703-A99D-AF9304F0E99A}
+		{C60268FC-F2E5-4777-871B-B58C481C2F24} = {11D07F13-BEF3-47F7-890B-F5A0AFB2CBA6}
+		{C9814374-1B7F-4459-AFD1-4E8A9A5FC3CD} = {C60268FC-F2E5-4777-871B-B58C481C2F24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C95BBC20-6E5F-4CA4-8E2E-EAF6E05A3280}
