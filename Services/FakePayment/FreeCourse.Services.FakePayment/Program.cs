@@ -1,16 +1,10 @@
-using FreeCourse.Services.Order.Application.Queries;
-using FreeCourse.Services.Order.Infrastructure;
-using FreeCourse.Shared.Services;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
 
-namespace FreeCourse.Services.Order.API
+namespace FreeCourse.Services.FakePayment
 {
     public class Program
     {
@@ -19,17 +13,6 @@ namespace FreeCourse.Services.Order.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<OrderDbContext>(opt =>
-            {
-                opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), configure =>
-                {
-                    configure.MigrationsAssembly("FreeCourse.Services.Order.Infrastructure");
-                });
-            });
-
-            builder.Services.AddHttpContextAccessor();
-            builder.Services.AddScoped<ISharedIdentityService, SharedIdentityService>();
-            builder.Services.AddMediatR(typeof(GetOrdersByUserIdQuery));
 
             var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
@@ -45,8 +28,6 @@ namespace FreeCourse.Services.Order.API
             {
                 opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
             });
-
-            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
@@ -84,8 +65,6 @@ namespace FreeCourse.Services.Order.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
