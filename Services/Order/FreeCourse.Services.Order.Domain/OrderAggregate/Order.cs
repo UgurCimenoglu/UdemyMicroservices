@@ -14,7 +14,10 @@ namespace FreeCourse.Services.Order.Domain.OrderAggregate
         public string BuyerId { get; set; }
         private readonly List<OrderItem> _orderItems;
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
+        public Order()
+        {
 
+        }
         public Order(Address address, string buyerId)
         {
             CreatedDate = DateTime.Now;
@@ -29,7 +32,7 @@ namespace FreeCourse.Services.Order.Domain.OrderAggregate
             if (!existProduct)
             {
                 var newOrderItem = new OrderItem(productId, productName, pictuteUrl, price);
-
+                _orderItems.Add(newOrderItem);
             }
         }
 
