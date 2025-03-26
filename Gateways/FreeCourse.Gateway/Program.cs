@@ -13,7 +13,7 @@ namespace FreeCourse.Gateway
             builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
             {
                 config
-                .AddJsonFile($"configuration{hostingContext.HostingEnvironment.EnvironmentName.ToLower()}.json")
+                .AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName.ToLower()}.json")
                 .AddEnvironmentVariables();
             });
             builder.Services.AddOcelot();
