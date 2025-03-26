@@ -20,7 +20,7 @@ namespace FreeCourse.Gateway
             var app = builder.Build();
 
             app.MapGet("/", () => "Hello World!");
-            app.UseOcelot();
+            app.UseOcelot().Wait();
             app.Run();
         }
     }
