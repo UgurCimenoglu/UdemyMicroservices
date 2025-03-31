@@ -16,7 +16,16 @@ namespace FreeCourse.Gateway
                 .AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName.ToLower()}.json")
                 .AddEnvironmentVariables();
             });
+
+            builder.Services.AddAuthentication().AddJwtBearer("GatewayAuthenticationScheme", options =>
+            {
+                options.Authority = builder.Configuration["IdentityServerUrl"];
+                options.Audience = builder.Configuration["Audience"];
+                options.RequireHttpsMetadata = false;
+            });
+
             builder.Services.AddOcelot();
+
             var app = builder.Build();
 
             app.MapGet("/", () => "Hello World!");
